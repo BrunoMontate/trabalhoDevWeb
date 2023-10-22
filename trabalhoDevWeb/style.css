@@ -16,7 +16,7 @@
     border-radius: 10px;
 }
 .retangulo:hover{
-    transition-delay: 150ms;
+    transition-delay: 50ms;
     box-shadow:  -29px 29px 58px #137bc1,
     29px -29px 58px #1380c9;
 }
@@ -24,4 +24,40 @@
     font-family: 'DM Sans', sans-serif;
     color: #137DC5;
     text-align: left;
+}
+
+.navbar-expand-lg.navbar.bg-body-tertiary.fixed-top {
+    height: 80px;
+    background-color: #137DC5;
+  }
+
+.navbar-brand {
+    font-size: 40px;
+}
+
+.nav-item {
+    font-size: 20px;
+}
+.nav-link {
+    color: #137DC5;
+}
+
+.nav-link:hover {
+    color: #1596ec;
+}
+.bs-navbar-color {
+    background-color: #137DC5;
+}
+
+.offcanvas-title {
+    color: #137bc1;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: #137bc1;
+}
+
+.titleInfo {
+    color: white;
 }
