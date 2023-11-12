@@ -1,0 +1,27 @@
+/* telaInfo.css */
+
+.container-fluid.TI {
+    background-color: #1b1e20;
+    padding: 20px;
+    border: 4px solid transparent; /* Set the border width */
+    border-radius: 50px; /* Add this line for rounded corners */
+    margin: 0 auto;
+    max-width: 800px; /* Adjust max-width as needed */
+    margin-top: 20px;
+    height: 900px;
+    position: relative;
+    box-shadow: 1px 2.5px 5px 10px rgba(0, 123, 255, 0.125), 0 0 0 4px rgba(0, 191, 255, 0.3); /* Blue gradient for the border with lower opacity */
+    overflow: hidden; /* Clip the box-shadow to the container */
+}
+
+@media (max-width: 768px) {
+    .container-fluid.TI {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .container-fluid.TI {
+        padding: 5px; /* Further adjust padding for even smaller screens */
+    }
+}
