@@ -1,5 +1,3 @@
-/* telaInfo.css */
-
 .container-fluid.TI {
     background-color: #1b1e20;
     padding: 20px;
@@ -10,8 +8,10 @@
     margin-top: 20px;
     height: 900px;
     position: relative;
-    box-shadow: 1px 2.5px 5px 10px rgba(0, 123, 255, 0.125), 0 0 0 4px rgba(0, 191, 255, 0.3); /* Blue gradient for the border with lower opacity */
+
+    box-shadow: 1px 2.5px 25px 5px #103783; /* Blue gradient for the border with lower opacity */
     overflow: hidden; /* Clip the box-shadow to the container */
+    
 }
 
 @media (max-width: 768px) {
