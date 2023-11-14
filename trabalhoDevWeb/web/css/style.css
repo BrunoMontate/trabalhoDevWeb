@@ -14,11 +14,12 @@
     height: 650px;
     border: 2px solid #3297da;
     border-radius: 10px;
+
 }
 .retangulo:hover{
     transition-delay: 50ms;
-    box-shadow:  -29px 29px 58px #137bc1,
-    29px -29px 58px #1380c9;
+    box-shadow:  19px -1px 58px #137bc1, 
+        -19px 1px 58px #1380c9;
 }
 .logoMarca{
     font-family: 'DM Sans', sans-serif;
