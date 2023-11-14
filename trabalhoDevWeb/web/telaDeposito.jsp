@@ -65,7 +65,7 @@
 
     <div class="container-fluid TI">
         <fieldset class="d-flex justify-content-center">
-            <legend class="titleInfo">Investimento</legend>
+            <legend class="titleInfo">Depósito</legend>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     
