@@ -50,15 +50,26 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("telaSaque.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("id_conta", 0);
-                
             } else if ("2".equals(tipoUsuario)) {
-                
                 int idConta = (int) credenciais.get("id_conta");
+                // Obtenha as informações da conta diretamente no LoginServlet
+                
+                Map<String, Double> contaInfo = usuarioDAO.obterInformacoesConta(idConta);
+                request.setAttribute("contaInfo", contaInfo);
+                if (contaInfo != null) {
+                    // Set saldo como atributo de solicitação
+                    request.setAttribute("saldo", contaInfo.get("saldo"));
+                    HttpSession session = request.getSession();
+                    session.setAttribute("id_conta", idConta);
 
-                HttpSession session = request.getSession();
-                session.setAttribute("id_conta", idConta);
-
-                response.sendRedirect("telaInicial.jsp");
+                    // Encaminhe diretamente para telaInicial.jsp
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("telaInicial.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    request.setAttribute("mensagem", "Conta não encontrada");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+                    dispatcher.forward(request, response);
+                }
             }
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
