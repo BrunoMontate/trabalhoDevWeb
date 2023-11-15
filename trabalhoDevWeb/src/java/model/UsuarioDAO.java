@@ -43,8 +43,8 @@ public class UsuarioDAO {
             throw new RuntimeException("Erro ao verificar credenciais", e);
         }
     }
-
-    private int obterIdConta(String id_usuario) {
+    
+    int obterIdConta(String id_usuario) {
         try {
             // Adapte a consulta conforme a sua estrutura de banco de dados
             String sql = "SELECT id_conta FROM conta WHERE id_usuario = ?";
@@ -62,4 +62,31 @@ public class UsuarioDAO {
             throw new RuntimeException("Erro ao obter ID da conta", e);
         }
     }
+
+public Map<String, Double> obterInformacoesConta(int idConta) {
+    try {
+        // Adapte a consulta conforme a sua estrutura de banco de dados
+        String sql = "SELECT saldo FROM conta WHERE id_conta = ?";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setInt(1, idConta);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Recupere o saldo da conta do resultado da consulta
+                    double saldo = resultSet.getDouble("saldo");
+
+                    // Retorne as informações da conta em um Map
+                    Map<String, Double> informacoesConta = new HashMap<>();
+                    informacoesConta.put("saldo", saldo);
+                    // Adicione outros atributos se necessário
+                    return informacoesConta;
+                } else {
+                    // Retorne um Map vazio se a conta não for encontrada
+                    return new HashMap<>();
+                }
+            }
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao obter informações da conta", e);
+    }
+}
 }

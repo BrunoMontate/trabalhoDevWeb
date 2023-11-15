@@ -4,12 +4,17 @@
     Author     : Usuário
 --%>
 
+<%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 
 <%
     int id_conta = (int) session.getAttribute("id_conta");
+    // Recupere as informações da conta do atributo da requisição
+    Map<String, Double> contaInfo = (Map<String, Double>) request.getAttribute("contaInfo");
+    // Verifique se contaInfo não é nulo para evitar exceções
+    if (contaInfo != null) {
 %>
 <html lang="pt-br">
 
@@ -83,11 +88,16 @@
                 Seu Saldo
             </div>
             <ul class="list-group list-group-flush">
-<li class="list-group-item text-center" id="saldo">R$ ${contaInfo.saldo}</li>
+<li class="list-group-item text-center" id="saldo">R$ <%= contaInfo.get("saldo") %></li>
 
             </ul>
         </div>
     </div>
+<%
+    } else {
+        response.sendRedirect("index.html");
+    }
+%>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
