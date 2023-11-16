@@ -49,6 +49,12 @@
                           <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="telaConsultarTransacoes.jsp">Consulta Detalhada</a>
                           </li>
+                          <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="telaVerificaClientes.jsp">Consulta Clientes</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.html">Sair</a>
+                          </li>
                           </li>
                       </div>
                 </div>
