@@ -145,5 +145,38 @@ static Map<String, Double> consultaSimples(Connection conexao, int id_conta) {
 
         return transacoes;
     }
+    
+        public static List<Map<String, Object>> consultarClientes(Connection conexao) {
+        String consultaSQL = "select u.nome, u.cpf, u.id_usuario,c.id_conta from usuarios u ,conta c where u.id_usuario = c.id_usuario AND u.tipo_usuario = 2";
+        List<Map<String, Object>> transacoes = new ArrayList<>();
+
+        try (PreparedStatement statement = conexao.prepareStatement(consultaSQL)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                // Ler os dados da transação do ResultSet
+                String nomeCliente = resultSet.getString("u.nome");
+                String cpfCliente = resultSet.getString("u.cpf");
+                int idUserCliente = resultSet.getInt("u.id_usuario");
+                int idContaCliente = resultSet.getInt("c.id_conta");
+
+                // Criar um mapa para armazenar os dados da transação
+                Map<String, Object> clienteMap = new HashMap<>();
+                clienteMap.put("nome", nomeCliente);
+                clienteMap.put("cpf", cpfCliente);
+                clienteMap.put("idUsuario", idUserCliente);
+                clienteMap.put("idConta", idContaCliente);
+                
+
+                // Adicionar o mapa à lista
+                transacoes.add(clienteMap);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao consultar Clientes", e);
+        }
+
+        return transacoes;
+    }
+    
 }
    
