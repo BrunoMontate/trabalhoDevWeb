@@ -44,7 +44,7 @@ public class UsuarioDAO {
         }
     }
     
-    int obterIdConta(String id_usuario) {
+    public int obterIdConta(String id_usuario) {
         try {
             // Adapte a consulta conforme a sua estrutura de banco de dados
             String sql = "SELECT id_conta FROM conta WHERE id_usuario = ?";
@@ -63,7 +63,7 @@ public class UsuarioDAO {
         }
     }
 
-static Map<String, Double> verificarSaldo(int idConta) {
+public static Map<String, Double> verificarSaldo(int idConta) {
     try {
         // Adapte a consulta conforme a sua estrutura de banco de dados
         Connection conexao = new Conexao().getConexao();
@@ -92,7 +92,7 @@ static Map<String, Double> verificarSaldo(int idConta) {
     }
 }
 
-static int realizarSaque(String id_conta, String valor) {
+public static int realizarSaque(String id_conta, String valor) {
     Connection conexao = new Conexao().getConexao();
     String sql1 = "UPDATE conta SET saldo = saldo - ? WHERE id_conta = ?";
     try (PreparedStatement statement = conexao.prepareStatement(sql1)) {
@@ -123,7 +123,7 @@ static int realizarSaque(String id_conta, String valor) {
     return 0;
 }
 
-static int realizarDeposito(String id_conta, Double valor) {
+public static int realizarDeposito(String id_conta, Double valor) {
     Connection conexao = new Conexao().getConexao();
     String sql1 = "UPDATE conta SET saldo = saldo + ? WHERE id_conta = ?";
     try (PreparedStatement statement = conexao.prepareStatement(sql1)) {
@@ -153,7 +153,7 @@ static int realizarDeposito(String id_conta, Double valor) {
     }
     return 0;
 }
-static int realizarInvestimento(String id_conta, String valor) {
+public static int realizarInvestimento(String id_conta, String valor) {
     Connection conexao = new Conexao().getConexao();
     String sql1 = "UPDATE conta SET saldo = saldo - ? WHERE id_conta = ?";
     try (PreparedStatement statement = conexao.prepareStatement(sql1)) {
@@ -197,7 +197,7 @@ static int realizarInvestimento(String id_conta, String valor) {
     return 0;
 }
 
-static int realizarTransferencia(String id_conta_origem,String id_conta_destino, String valor){
+public static int realizarTransferencia(String id_conta_origem,String id_conta_destino, String valor){
     Connection conexao = new Conexao().getConexao();
     String sql1 = "UPDATE conta SET saldo = saldo - ? WHERE id_conta = ?";
     try (PreparedStatement statement = conexao.prepareStatement(sql1)) {
@@ -242,7 +242,7 @@ static int realizarTransferencia(String id_conta_origem,String id_conta_destino,
         return 0;
 }
 
-static int verificarExistenciaConta(String idConta) {
+public static int verificarExistenciaConta(String idConta) {
     Connection conexao = new Conexao().getConexao();
     String sql = "SELECT COUNT(*) AS total FROM conta WHERE id_conta = ?";
     
