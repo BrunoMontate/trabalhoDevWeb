@@ -68,7 +68,8 @@
         <fieldset class="d-flex flex-column justify-content-center">
             <legend class="titleInfo text-center">Consulta Simples</legend>
             <div class="col-md-12 justify-content-center d-flex">
-                <form class="col-md-8" action="acoesAdminConsultaSimples" method="post">
+            <form class="col-md-6" action="acoesAdminConsulta" method="post">
+            <input type="hidden" name="acao" value="consultasimples">
                     <div class="form-group my-5">
                         <label class="text-white" for="exampleInputName">Id da Conta</label>
                         <input type="text" class="form-control" name="id_conta" id="exampleInputName" required>

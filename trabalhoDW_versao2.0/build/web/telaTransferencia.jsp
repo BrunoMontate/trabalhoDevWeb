@@ -83,7 +83,8 @@
             </div>
         </div>
         <div class="col-md-12 justify-content-center d-flex">
-            <form class="col-md-6" action="usuarioTransferencia" method="post">
+            <form class="col-md-6" action="acoesusuario" method="post">
+            <input type="hidden" name="acao" value="transferir">
                 <div class="form-group my-5">
                     <label class="text-white" for="exampleInputName">ID Conta</label>
                     <input type="text" class="form-control" name="id_conta_origem" id="exampleInputName" value="<%=id_conta%>" readonly>

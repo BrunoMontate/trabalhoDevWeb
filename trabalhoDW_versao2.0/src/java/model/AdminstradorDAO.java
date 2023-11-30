@@ -25,7 +25,7 @@ public class AdminstradorDAO {
      public AdminstradorDAO(Connection conexao) {
         this.conexao = conexao;
     }
-static int criarUsuario(Connection conexao,String cpf, String nome, String tipo, String senha) {
+public static int criarUsuario(Connection conexao,String cpf, String nome, String tipo, String senha) {
     String sql = "INSERT INTO usuarios (nome, cpf, tipo_usuario, senha) VALUES (?, ?, ?, SHA2(?, 256))";
 
     try (PreparedStatement statement = conexao.prepareStatement(sql)) {
@@ -58,7 +58,7 @@ static int criarUsuario(Connection conexao,String cpf, String nome, String tipo,
     return idUsuario;
 }
 
-static int criarConta(Connection conexao,String id_usuario, String saldo, String valInvestido) {
+public static int criarConta(Connection conexao,String id_usuario, String saldo, String valInvestido) {
     String sql = "INSERT INTO conta (id_usuario, saldo, valInvestido) VALUES (?, ?, ?)";
 
     try (PreparedStatement statement = conexao.prepareStatement(sql)) {
@@ -90,7 +90,7 @@ static int criarConta(Connection conexao,String id_usuario, String saldo, String
     return idconta;
 }
 
-static Map<String, Double> consultaSimples(Connection conexao, int id_conta) {
+public static Map<String, Double> consultaSimples(Connection conexao, int id_conta) {
     String consultaSQL = "SELECT saldo, valInvestido FROM conta WHERE id_conta = ?";
 
     try (PreparedStatement statement = conexao.prepareStatement(consultaSQL)) {
