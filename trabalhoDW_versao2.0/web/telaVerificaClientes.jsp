@@ -1,9 +1,11 @@
 <%-- 
-    Document   : telaCriarUsuario
-    Created on : 14 de nov. de 2023, 22:49:58
+    Document   : telaVerificaClientes
+    Created on : 16 de nov. de 2023, 20:01:13
     Author     : Usuário
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,7 +17,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/telaInfo.css">
-    <title>Criação de Usuario </title>
+    <title>Acessar Conta </title>
 </head>
 
 <body style="background-color: rgb(22, 22, 22);">
@@ -38,7 +40,7 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                           <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="telaCriarUsuario.jsp">Criar Usuario</a>
+                            <a class="nav-link" aria-current="page" href="telaCriarUsuario.jsp">Criar Usuario</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="telaCriarConta.jsp">Criar Conta</a>
@@ -50,7 +52,7 @@
                             <a class="nav-link" aria-current="page" href="telaConsultarTransacoes.jsp">Consulta Detalhada</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="telaVerificaClientes.jsp">Consulta Clientes</a>
+                            <a class="nav-link active" aria-current="page" href="telaVerificaClientes.jsp">Consulta Clientes</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="index.html">Sair</a>
@@ -65,50 +67,54 @@
     <br><br><br>
 
     <div class="container-fluid TI">
-        <fieldset class="d-flex flex-column align-items-center justify-content-center">
-            <legend class="titleInfo text-center">Criar Usuario</legend>
-            <br>
+        <fieldset class="d-flex flex-column justify-content-center">
+            <legend class="titleInfo text-center">Consulta de Clientes</legend>
             <div class="col-md-12 justify-content-center d-flex">
-                <form class="col-md-8" action="acoesAdmin" method="post">
-                    <div class="form-group my-2">
-                        <label class="text-white" for="exampleInputName">CPF</label>
-                        <input type="text" class="form-control" name="cpf" id="exampleInputName"  required>
-                    </div>
-                    <div class="form-group my-2">
-                      <label class="text-white" for="exampleInputName">Nome</label>
-                      <input type="text" class="form-control" name="nome" id="exampleInputName"  required>
-                    </div>
-                    <div class="form-group my-2">
-                        <label class="text-white" for="exampleInputPassword1">Senha</label>
-                        <input type="password" class="form-control" name="senha" id="exampleInputPassword1"  required>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault1" value="1" required>
-                        <label class="text-white" class="form-check-label" name="tipo" for="flexRadioDefault1">
-                          Administrador
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault2" value="2" checked required>
-                        <label class="text-white" class="form-check-label" for="flexRadioDefault2" v>
-                          Cliente
-                        </label>
-                      </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary" >Criar</button>
-                  </form>
             </div>
+                   <form class="col-md-8" action="ConsultaContasExistentes" method="get">
+                    <button type="submit" class="btn btn-primary" >Acessar</button>
+                  </form>
         </fieldset>
-    
-        <% 
-            Object idUsuarioNovo = request.getAttribute("id_usuarioNovo");
-            if (idUsuarioNovo != null) { 
-         %>
-         <p class="text-white">
-            Novo usuário criado com sucesso.<br>Salve o ID do usuário caso seja necessário a criação de uma conta: <%= idUsuarioNovo %><br> Caso seja um novo cliente, vá para aba "Criar Conta"
-        </p>
-    <% } %>
+       
+        <br>         
+<% 
+        Object clientes = request.getAttribute("clientes");
+        if (clientes != null) {
+        List<Map<String, Object>> Listaclientes = (List<Map<String, Object>>) clientes;
+    %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>ID Usuário</th>
+                        <th>ID Conta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tbody>
+    <% for (Map<String, Object> cliente : Listaclientes) { %>
+        <tr>
+            <td><%= cliente.get("nome") %></td>
+            <td><%= cliente.get("cpf") %></td>
+            <td><%= cliente.get("idUsuario") %></td>
+            <td><%= cliente.get("idConta") %></td>
+        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
+<% } else { %>
+    <p>Nenhum cliente encontrado.</p>
+<% } %>
+
+        
     </div>
     <br><br>
 

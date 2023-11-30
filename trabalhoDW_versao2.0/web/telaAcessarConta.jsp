@@ -1,6 +1,6 @@
 <%-- 
-    Document   : telaCriarUsuario
-    Created on : 14 de nov. de 2023, 22:49:58
+    Document   : telaAcessarConta
+    Created on : 14 de nov. de 2023, 22:45:32
     Author     : Usuário
 --%>
 
@@ -15,7 +15,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/telaInfo.css">
-    <title>Criação de Usuario </title>
+    <title>Acessar Conta </title>
 </head>
 
 <body style="background-color: rgb(22, 22, 22);">
@@ -38,13 +38,13 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                           <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="telaCriarUsuario.jsp">Criar Usuario</a>
+                            <a class="nav-link" aria-current="page" href="telaCriarUsuario.jsp">Criar Usuario</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="telaCriarConta.jsp">Criar Conta</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="telaAcessarConta.jsp">Consulta Simples</a>
+                            <a class="nav-link active" aria-current="page" href="telaAcessarConta.jsp">Consulta Simples</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="telaConsultarTransacoes.jsp">Consulta Detalhada</a>
@@ -65,50 +65,45 @@
     <br><br><br>
 
     <div class="container-fluid TI">
-        <fieldset class="d-flex flex-column align-items-center justify-content-center">
-            <legend class="titleInfo text-center">Criar Usuario</legend>
-            <br>
+        <fieldset class="d-flex flex-column justify-content-center">
+            <legend class="titleInfo text-center">Consulta Simples</legend>
             <div class="col-md-12 justify-content-center d-flex">
-                <form class="col-md-8" action="acoesAdmin" method="post">
-                    <div class="form-group my-2">
-                        <label class="text-white" for="exampleInputName">CPF</label>
-                        <input type="text" class="form-control" name="cpf" id="exampleInputName"  required>
+                <form class="col-md-8" action="acoesAdminConsultaSimples" method="post">
+                    <div class="form-group my-5">
+                        <label class="text-white" for="exampleInputName">Id da Conta</label>
+                        <input type="text" class="form-control" name="id_conta" id="exampleInputName" required>
                     </div>
-                    <div class="form-group my-2">
-                      <label class="text-white" for="exampleInputName">Nome</label>
-                      <input type="text" class="form-control" name="nome" id="exampleInputName"  required>
-                    </div>
-                    <div class="form-group my-2">
-                        <label class="text-white" for="exampleInputPassword1">Senha</label>
-                        <input type="password" class="form-control" name="senha" id="exampleInputPassword1"  required>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault1" value="1" required>
-                        <label class="text-white" class="form-check-label" name="tipo" for="flexRadioDefault1">
-                          Administrador
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault2" value="2" checked required>
-                        <label class="text-white" class="form-check-label" for="flexRadioDefault2" v>
-                          Cliente
-                        </label>
-                      </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary" >Criar</button>
+                    <button type="submit" class="btn btn-primary" >Acessar</button>
                   </form>
+
+
             </div>
         </fieldset>
-    
-        <% 
-            Object idUsuarioNovo = request.getAttribute("id_usuarioNovo");
-            if (idUsuarioNovo != null) { 
+        <br>
+                 <% 
+            Object saldo = request.getAttribute("saldo");
+            if (saldo != null) { 
          %>
-         <p class="text-white">
-            Novo usuário criado com sucesso.<br>Salve o ID do usuário caso seja necessário a criação de uma conta: <%= idUsuarioNovo %><br> Caso seja um novo cliente, vá para aba "Criar Conta"
-        </p>
+<div class="row mx-auto">
+    <div class="col-sm-12 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Saldo</h5>
+                <p class="card-text">R$<%= request.getAttribute("saldo") %></p>
+            </div>
+        </div>
+    </div>      
+    <div class="col-sm-12 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Investido</h5>
+                <p class="card-text">R$<%= request.getAttribute("valorInvestido") %></p>
+            </div>
+        </div>
+    </div>
+</div>
     <% } %>
-
+        
     </div>
     <br><br>
 

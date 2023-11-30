@@ -142,7 +142,6 @@ static Map<String, Double> consultaSimples(Connection conexao, int id_conta) {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao consultar transações", e);
         }
-
         return transacoes;
     }
     
